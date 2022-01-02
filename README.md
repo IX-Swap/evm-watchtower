@@ -74,8 +74,8 @@ await app.indexUniV2PoolPromised(/* stringifyBalances = */ false);
   }
 
   export interface UniV2Holdings extends TokenBalance {
-    address: string,
-    amount: ethers.BigNumber | string,
+    amount0: ethers.BigNumber | string,
+    amount1: ethers.BigNumber | string,
   }
 */
 
