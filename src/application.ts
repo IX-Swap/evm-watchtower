@@ -2,7 +2,7 @@ import ololog from 'ololog';
 import { ethers } from 'ethers';
 import { Config } from './interface';
 import { Evm } from './providers/evm';
-import { EndOfEvents } from './providers/interface';
+import { EndOfEvents, UniV2HoldingsResponse, TokenBalance } from './providers/interface';
 import { ObjectConfig } from './object-config';
 
 export class Application {
@@ -14,6 +14,12 @@ export class Application {
     this.config = config;
     this.logging = logging;
     this.log = ololog.configure({ locate: false, time: true });
+  }
+
+  async indexUniV2PoolPromised(stringifyBalances = false): Promise<UniV2HoldingsResponse> {
+    return new Promise(async resolve => {
+      await this.indexUniV2Pool(holdings => resolve(holdings), stringifyBalances);
+    });
   }
 
   async indexUniV2Pool(onEnd?: Function, stringifyBalances = false): Promise<Function> {
@@ -33,6 +39,12 @@ export class Application {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       return (onEnd ?? (() => { }))(holdings);
     }, true, false); // doesn't make sense if no balances read 
+  }
+
+  async indexPromised(readBalances = false, stringifyBalances = false): Promise<Set<TokenBalance>> {
+    return new Promise(async resolve => {
+      await this.index(balances => resolve(balances), readBalances, stringifyBalances);
+    });
   }
 
   async index(onEnd?: Function, readBalances = false, stringifyBalances = false): Promise<Function> {

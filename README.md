@@ -38,19 +38,18 @@ const app = Application.create({
   end: '14047959'
 });
 
-await app.index(async balances => {
+const balances = await app.indexPromised(/* readBalances = */ true, /* stringifyBalances = */ false);
 
-  /*
+/*
   TYPE: balances => Set<TokenBalance>
 
   export interface TokenBalance {
     address: string,
     amount: ethers.BigNumber | string,
   }
-  */
+*/
 
-  console.log('balances', balances);
-}, /* readBalances = */ true, /* stringifyBalances = */ false);
+console.log('balances', balances);
 
 
 /////////// Read Uni V2 LP token holdings
@@ -62,18 +61,25 @@ const app = Application.create({
   end: '14047959'
 });
 
-await app.indexUniV2Pool(async holdings => {
-  /*
-  TYPE: holdings => { token0: string, token1: string, totalSupply: ethers.BigNumber | string, balances: Set<UniV2Holdings> }
+await app.indexUniV2PoolPromised(/* stringifyBalances = */ false);
+
+/*
+  TYPE: holdings => UniV2HoldingsResponse
+
+  export interface UniV2HoldingsResponse {
+    token0: string,
+    token1: string,
+    totalSupply: ethers.BigNumber | string,
+    balances: Set<UniV2Holdings>,
+  }
 
   export interface UniV2Holdings extends TokenBalance {
     address: string,
     amount: ethers.BigNumber | string,
   }
-  */
+*/
 
-  console.log('holdings', holdings);
-}, /* stringifyBalances = */ false);
+console.log('holdings', holdings);
 ```
 
 ## Help

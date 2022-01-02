@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { Contract as MulticallContract, Provider as MulticallProvider } from 'ethers-multicall';
-import { ProviderInfo, Abi, Event, EventType, LatestBlock, EndOfEvents, TokenBalance, UniV2Holdings } from './interface';
+import { ProviderInfo, Abi, Event, EventType, LatestBlock, EndOfEvents, TokenBalance, UniV2Holdings, UniV2HoldingsResponse } from './interface';
 
 export class Evm {
   readonly provider: ethers.providers.JsonRpcProvider | ethers.providers.WebSocketProvider;
@@ -14,7 +14,7 @@ export class Evm {
   erc20Contract(token: string, multicall = false, includeUniV2 = false): ethers.Contract | MulticallContract {
     const abi = [
       Abi.Transfer, Abi.BalanceOf, Abi.TotalSupply,
-      ...(includeUniV2 ? [ Abi.Token0, Abi.Token1, Abi.GetReserves ] : [])
+      ...(includeUniV2 ? [Abi.Token0, Abi.Token1, Abi.GetReserves] : [])
     ];
     return multicall ? new MulticallContract(token, abi) : new ethers.Contract(token, abi, this.provider);
   }
@@ -24,7 +24,7 @@ export class Evm {
     balances: Set<TokenBalance>,
     block: number | string = LatestBlock,
     stringifyBalances = false
-  ) : Promise<{ token0: string, token1: string, totalSupply: ethers.BigNumber | string, balances: Set<UniV2Holdings> }> {
+  ): Promise<UniV2HoldingsResponse> {
     const contract = this.erc20Contract(pool, false, true);
 
     const token0 = await contract.token0();
@@ -89,11 +89,11 @@ export class Evm {
     const allTransfers = contract.filters.Transfer(null, null) as ethers.EventFilter;
     const listener = async (from: string, to: string, amount: ethers.BigNumber, { blockNumber }) =>
       await callback(Evm.wrapTransfer(from, to, amount, denomination, blockNumber));
-    
+
     if (fromBlock !== null) {
       const events = await contract.queryFilter(allTransfers, fromBlock, toBlock);
 
-      for (const { args: [ from, to, amount ], blockNumber } of events) {
+      for (const { args: [from, to, amount], blockNumber } of events) {
         await listener(from, to, amount, { blockNumber });
       }
 
@@ -101,7 +101,7 @@ export class Evm {
       if (toBlock !== LatestBlock) {
         await callback(EndOfEvents);
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        return () => {}; // no nothing
+        return () => { }; // no nothing
       }
     }
 
@@ -123,7 +123,7 @@ export class Evm {
     let type = EventType.Transfer;
 
     if (from == ethers.constants.AddressZero) {
-      type = EventType.Mint; 
+      type = EventType.Mint;
     } else if (to == ethers.constants.AddressZero) {
       type = EventType.Burn;
     }

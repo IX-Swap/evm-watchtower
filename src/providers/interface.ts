@@ -43,6 +43,13 @@ export interface UniV2Holdings extends TokenBalance {
   amount1: ethers.BigNumber | string,
 }
 
+export interface UniV2HoldingsResponse {
+  token0: string,
+  token1: string,
+  totalSupply: ethers.BigNumber | string,
+  balances: Set<UniV2Holdings>,
+}
+
 export const EndOfEvents = { eoe: true };
 
 export const LatestBlock = 'latest';
