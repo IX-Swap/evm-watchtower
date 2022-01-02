@@ -30,8 +30,9 @@ export class Evm {
     const token0 = await contract.token0();
     const token1 = await contract.token1();
 
-    const totalSupply = await contract.totalSupply({ blockTag: block });
-    const [ reserve0, reserve1 ] = await contract.getReserves({ blockTag: block });
+    let totalSupply = await contract.totalSupply({ blockTag: block });
+    totalSupply = totalSupply.sub(10 ** 3); // @todo remove MINIMUM_LIQUIDITY?
+    const [reserve0, reserve1] = await contract.getReserves({ blockTag: block });
 
     const result = {
       token0, token1,
@@ -41,9 +42,9 @@ export class Evm {
 
     for (const { address, amount } of balances) {
       // @todo should it be enough for smaller holdings?
-      const perc = (amount as ethers.BigNumber).mul(10**8).div(totalSupply.div(100));
-      const amount0 = reserve0.mul(perc).div(10**10);
-      const amount1 = reserve1.mul(perc).div(10**10);
+      const perc = (amount as ethers.BigNumber).mul(10 ** 8).div(totalSupply.div(100));
+      const amount0 = reserve0.mul(perc).div(10 ** 10);
+      const amount1 = reserve1.mul(perc).div(10 ** 10);
 
       result.balances.add({
         address,
