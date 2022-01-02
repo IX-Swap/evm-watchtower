@@ -105,6 +105,4 @@ Examples:
   "0xc09bf2b1bc8725903c509e8caeef919085721
   5a8" --start 13145419 --end 14047959
   --balancesJson ./test.json
-
-Missing required argument: rpc
 ```
