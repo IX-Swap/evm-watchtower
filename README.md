@@ -14,14 +14,14 @@ npm i -g .
 Dump balances to "test.json" for addresses indexed within the "start" and "end" blocks:
 
 ```
-evm-wt index --rpc "wss://eth-mainnet.alchemyapi.io/v2/RqNO5cGv853tbDA_MblBuXJIz4V9F2J4" --token "0x73d7c860998CA3c01Ce8c808F5577d94d545d1b4" --start 13145419 --end 14047959 --balancesJson ./test.json
+evm-wt index --rpc "wss://eth-mainnet.alchemyapi.io/v2/your_key" --token "0x73d7c860998CA3c01Ce8c808F5577d94d545d1b4" --start 13145419 --end 14047959 --balancesJson ./test.json
 ```
 
 
 Dump holdings to "test.json" for LPs from an Uni V2 pool indexed within the "start" and "end" blocks:
 
 ```
-evm-wt index-lp --rpc "wss://eth-mainnet.alchemyapi.io/v2/RqNO5cGv853tbDA_MblBuXJIz4V9F2J4" --token "0xc09bf2b1bc8725903c509e8caeef9190857215a8" --start 13145419 --end 14047959 --balancesJson ./test.json
+evm-wt index-lp --rpc "wss://eth-mainnet.alchemyapi.io/v2/your_key" --token "0xc09bf2b1bc8725903c509e8caeef9190857215a8" --start 13145419 --end 14047959 --balancesJson ./test.json
 ```
 
 ## Programmatic Usage
@@ -32,7 +32,7 @@ import { Application } from 'evm-watchtower';
 /////////// Read ERC20 token balances
 
 const app = Application.create({
-  rpc: 'wss://eth-mainnet.alchemyapi.io/v2/RqNO5cGv853tbDA_MblBuXJIz4V9F2J4',
+  rpc: 'wss://eth-mainnet.alchemyapi.io/v2/your_key',
   token: '0x73d7c860998CA3c01Ce8c808F5577d94d545d1b4', // IXS ERC20 token
   start: '13145419',
   end: '14047959'
@@ -55,7 +55,7 @@ console.log('balances', balances);
 /////////// Read Uni V2 LP token holdings
 
 const app = Application.create({
-  rpc: 'wss://eth-mainnet.alchemyapi.io/v2/RqNO5cGv853tbDA_MblBuXJIz4V9F2J4',
+  rpc: 'wss://eth-mainnet.alchemyapi.io/v2/your_key',
   token: '0xc09bf2b1bc8725903c509e8caeef9190857215a8', // Uni V2 IXS-ETH LP token
   start: '13145419',
   end: '14047959'
@@ -100,14 +100,14 @@ Options:
 
 Examples:
   evm-wt index --rpc                        Dump balances to "test.json" for
-  "wss://eth-mainnet.alchemyapi.io/v2/RqNO  addresses indexed within the "start"
-  5cGv853tbDA_MblBuXJIz4V9F2J4" --token     and "end" blocks
+  "wss://eth-mainnet.alchemyapi.io/v2/your_key"  addresses indexed within the "start"
+   --token     and "end" blocks
   "0x73d7c860998CA3c01Ce8c808F5577d94d545d
   1b4" --start 13145419 --end 14047959
   --balancesJson ./test.json
   evm-wt index-lp --rpc                     Dump holdings to "test.json" for LPs
-  "wss://eth-mainnet.alchemyapi.io/v2/RqNO  from an Uni V2 pool indexed within
-  5cGv853tbDA_MblBuXJIz4V9F2J4" --token     the "start" and "end" blocks
+  "wss://eth-mainnet.alchemyapi.io/v2/your_key"  from an Uni V2 pool indexed within
+   --token     the "start" and "end" blocks
   "0xc09bf2b1bc8725903c509e8caeef919085721
   5a8" --start 13145419 --end 14047959
   --balancesJson ./test.json
