@@ -10,6 +10,7 @@
     "evm-wt": "./index.js"
   },
   "scripts": {
+    "example": "ts-node example.ts",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",
@@ -18,6 +19,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "install": "npm install . && npm run build",
     "postinstall": "check-engine"
   },
   "dependencies": {
@@ -44,7 +46,7 @@
     "ts-loader": "^7.0.5",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.10"
   },
   "jest": {
     "moduleFileExtensions": [

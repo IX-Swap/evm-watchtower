@@ -91,7 +91,7 @@ export class Evm {
       await callback(Evm.wrapTransfer(from, to, amount, denomination, blockNumber));
 
     if (fromBlock !== null) {
-      const events = await contract.queryFilter(allTransfers, fromBlock, toBlock);
+      const events = await contract.queryFilter(allTransfers, Number(fromBlock), Number(toBlock));
 
       for (const { args: [from, to, amount], blockNumber } of events) {
         await listener(from, to, amount, { blockNumber });
