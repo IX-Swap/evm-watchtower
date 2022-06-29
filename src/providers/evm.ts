@@ -26,13 +26,14 @@ export class Evm {
     stringifyBalances = false
   ): Promise<UniV2HoldingsResponse> {
     const contract = this.erc20Contract(pool, false, true);
+    const blockTag = Number(block);
 
     const token0 = await contract.token0();
     const token1 = await contract.token1();
 
-    let totalSupply = await contract.totalSupply({ blockTag: block });
+    let totalSupply = await contract.totalSupply({ blockTag });
     totalSupply = totalSupply.sub(10 ** 3); // @todo remove MINIMUM_LIQUIDITY?
-    const [reserve0, reserve1] = await contract.getReserves({ blockTag: block });
+    const [reserve0, reserve1] = await contract.getReserves({ blockTag });
 
     const result = {
       token0, token1,
