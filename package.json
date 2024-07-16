@@ -1,6 +1,6 @@
 {
   "name": "@ixswap1/evm-watchtower",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "EVM watchtower to monitor contracts activity over the time.",
   "main": "dist/index.js",
   "repository": "git@github.com:IX-Swap/evm-watchtower.git",
@@ -10,6 +10,7 @@
     "evm-wt": "./index.js"
   },
   "scripts": {
+    "prepublishOnly": "npm test && npm run build",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc --watch",
