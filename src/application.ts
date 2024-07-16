@@ -49,7 +49,7 @@ export class Application {
 
   async index(onEnd?: Function, readBalances = false, stringifyBalances = false): Promise<Function> {
     const evm = new Evm(this.config.get('rpc') as string);
-    
+
     this.logging && this.log.green(await evm.info());
     this.logging && this.log.green(`TOKEN=${this.config.get('token')}`);
     this.logging && this.log.green(`DENOMINATION=${this.config.get('denomination')}`);
