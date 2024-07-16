@@ -1,5 +1,5 @@
 {
-  "name": "evm-watchtower",
+  "name": "@ixswap1/evm-watchtower",
   "version": "1.0.1",
   "description": "EVM watchtower to monitor contracts activity over the time.",
   "main": "dist/index.js",
