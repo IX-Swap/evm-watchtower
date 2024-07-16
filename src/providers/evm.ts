@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { Contract as MulticallContract, Provider as MulticallProvider } from 'ethers-multicall';
+import { Contract as MulticallContract, Provider as MulticallProvider } from '@ixswap1/ethers-multicall';
 import { ProviderInfo, Abi, Event, EventType, LatestBlock, EndOfEvents, TokenBalance, UniV2Holdings, UniV2HoldingsResponse } from './interface';
 
 export class Evm {
