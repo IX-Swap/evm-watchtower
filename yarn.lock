@@ -686,10 +686,10 @@
   resolved "https://registry.npmjs.org/@istanbuljs/schema/-/schema-0.1.3.tgz"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@ixswap1/ethers-multicall@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/@ixswap1/ethers-multicall/-/ethers-multicall-0.1.0.tgz"
-  integrity sha512-EEavzQkYVcZTgAGiCYFhUjEz4DkCIjHRM5hdyhOvMCakgdTxX6v0mUypH14E0zvuK+PIPQzKF8+6lAfMihxbgA==
+"@ixswap1/ethers-multicall@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/@ixswap1/ethers-multicall/-/ethers-multicall-0.1.3.tgz"
+  integrity sha512-IYPGFvgfGAdxMSdyoIz5fj1q8mMLX4dqB2M9ejGa1zTsl8Zlin88fWV9JtuX7a7IARfKxQXcXrn3YycULVr/iw==
   dependencies:
     ethers "^5.0.0"
 
@@ -2460,11 +2460,6 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8= sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
-
-fsevents@^2.1.2:
-  version "2.3.2"
-  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
-  integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
 function-bind@^1.1.1:
   version "1.1.1"
